@@ -1,8 +1,8 @@
-/* RHYTHM service worker — v1.1
-   Only one goal: track habits even without signal in the subway.
-   Increment VERSION after modifying index.html to force an update on mobile. */
+/* RHYTHM service worker — v0.5
+   目标只有一个：地铁里没信号也能打卡。
+   改了 index.html 之后，把 VERSION 加 1，手机才会拿到新版本。 */
 
-var VERSION = 'rhythm-v1.1.1';
+var VERSION = 'rhythm-v1.1.0';
 var SHELL = [
   './',
   './index.html',
@@ -31,7 +31,7 @@ self.addEventListener('fetch', function (e) {
   var req = e.request;
   if (req.method !== 'GET') return;
 
-  // Page itself: prefer network, fallback to cache if offline
+  // 页面本身：优先拿网络的新版本，断网时回落到缓存
   if (req.mode === 'navigate') {
     e.respondWith(
       fetch(req).then(function (res) {
@@ -45,7 +45,7 @@ self.addEventListener('fetch', function (e) {
     return;
   }
 
-  // Other resources (icons, fonts): cache first, update in background
+  // 其余资源（图标、字体）：缓存优先，顺手把新的存下来
   e.respondWith(
     caches.match(req).then(function (hit) {
       if (hit) return hit;
