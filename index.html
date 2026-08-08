@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1" />
@@ -13,7 +13,7 @@
 <link rel="icon" href="./icon-192.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+JP:wght@400;500;700&display=swap" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" />
 <style>
 *,*::before,*::after{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 :root{
@@ -22,18 +22,19 @@
   --blue:#2E56C8;--blue-s:#8AA6F2;
   --amber:#DE9420;--amber-s:#F0BE6C;
   --green:#3E9B5C;--green-s:#7FD09A;
+  --red:#E07A7A;
   --brass:#D8A93B;
 }
 html,body{margin:0;padding:0;background:var(--bg)}
-body{color:var(--text);font-family:'Noto Sans JP',-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+body{color:var(--text);font-family:'Inter',-apple-system,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
 .wrap{max-width:520px;margin:0 auto;padding:calc(16px + env(safe-area-inset-top)) 16px 110px}
 .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin:0}
 h1{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:24px;margin:5px 0 0}
 .sub{font-size:12.5px;color:var(--mute);margin:6px 0 0;line-height:1.65}
 .sec{margin-top:22px}
-.sec-h{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:9px}
-.sec-t{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase}
-.sec-n{font-size:10.5px;color:var(--dim)}
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px}
+.sec-t{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.sec-n{font-size:10.5px;color:var(--dim);text-align:right}
 
 .tb{display:block;width:100%;text-align:left;border:none;border-radius:14px;padding:15px 16px;margin-bottom:9px;cursor:pointer;font-family:inherit;transition:transform .12s ease}
 .tb:active{transform:scale(.985)}
@@ -58,7 +59,7 @@ h1{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:24px;margin:5
 .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
 .st-b{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:15px 16px;cursor:pointer;font-family:inherit;color:var(--text);text-align:left}
 .st-b:active{transform:scale(.985)}
-.lv{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:4px 11px;border-radius:20px;white-space:nowrap}
+.lv{font-family:'IBM Plex Mono',monospace;font-size:11.5px;padding:4px 11px;border-radius:20px;white-space:nowrap}
 .lvA{background:#1F4A5A;color:#A6DEEE}
 .lvB{background:#26402C;color:#A9E0BA}
 .lvC{background:#2E2A26;color:#B7AA9B}
@@ -68,7 +69,7 @@ h1{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:24px;margin:5
 nav{position:fixed;bottom:0;left:0;right:0;background:rgba(20,18,16,.95);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);border-top:1px solid var(--line);display:flex;padding:9px 8px calc(9px + env(safe-area-inset-bottom))}
 nav button{flex:1;background:none;border:none;cursor:pointer;padding:6px 2px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--dim);border-radius:8px}
 nav button.on{color:var(--brass)}
-nav button span{display:block;font-family:'Noto Sans JP',sans-serif;font-size:12.5px;letter-spacing:0;margin-top:3px}
+nav button span{display:block;font-family:'Inter',sans-serif;font-size:12.5px;letter-spacing:0;margin-top:3px}
 
 .ov{position:fixed;inset:0;background:rgba(0,0,0,.62);display:flex;align-items:flex-end;justify-content:center;z-index:50;opacity:0;pointer-events:none;transition:opacity .18s}
 .ov.on{opacity:1;pointer-events:auto}
@@ -90,12 +91,11 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .op.on{border-color:var(--brass);background:rgba(216,169,59,.15);color:#F2DFA8}
 .op.neg.on{border-color:#B06A5A;background:rgba(176,106,90,.17);color:#F0BCAE}
 .op.pos.on{border-color:#5AA36F;background:rgba(90,163,111,.17);color:#AEE5BF}
-.chip{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 11px;border-radius:9px;border:1px solid var(--green);background:rgba(62,155,92,.14);color:var(--green-s);cursor:pointer;font-family:inherit}
+.chip{font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 11px;border-radius:9px;border:1px solid var(--green);background:rgba(62,155,92,.14);color:var(--green-s);cursor:pointer}
 .btn{display:block;width:100%;padding:14px;border-radius:11px;border:none;font-size:15px;font-weight:600;font-family:inherit;cursor:pointer;margin-top:20px;background:var(--brass);color:#241C0E}
 .btn:active{transform:scale(.985)}
 .btn.blue{background:var(--blue);color:#EAF0FF}
 .btn.ghost{background:transparent;border:1px solid var(--line);color:var(--mute);font-weight:400;font-size:13px;padding:11px;margin-top:9px}
-.btn.sm{margin-top:9px;padding:11px;font-size:13px;font-weight:500;background:transparent;border:1px dashed #453C35;color:var(--mute)}
 .btn:disabled{opacity:.34}
 .fold{width:100%;background:none;border:1px dashed #453C35;border-radius:10px;color:var(--mute);padding:12px;font-size:12.5px;font-family:inherit;cursor:pointer;margin-top:15px}
 
@@ -112,6 +112,9 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .cd .dots{display:flex;gap:2.5px;margin-top:4px;height:5px}
 .cd .dots i{width:5px;height:5px;border-radius:50%;display:block}
 .cd .lvbar{margin-top:auto;width:62%;height:3px;border-radius:2px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;font-size:10.5px;color:var(--dim);font-family:'IBM Plex Mono',monospace}
+.legend span{display:flex;align-items:center;gap:5px}
+.legend i{width:6px;height:6px;border-radius:50%;display:block}
 
 .kv{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:13.5px}
 .kv:first-child{border-top:none}
@@ -121,6 +124,7 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .item:first-of-type{border-top:none}
 .item .n1{font-size:14.5px}
 .item .n2{font-size:11px;color:var(--dim);margin-top:3px;font-family:'IBM Plex Mono',monospace}
+.item .n2.miss{color:var(--red)}
 .mini{background:none;border:1px solid var(--line);color:var(--mute);padding:7px 11px;border-radius:8px;font-size:11.5px;cursor:pointer;font-family:inherit;white-space:nowrap}
 .mini.red{border-color:#6B4038;color:#D99A8A}
 .empty{color:var(--mute);font-size:13px;line-height:1.75;margin:0}
@@ -136,8 +140,8 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 .rate{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--line)}
 .rate:first-child{border-top:none}
 .rate .rl{font-size:14px;flex:1}
-.rate .rn{font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--brass);width:52px;text-align:right}
-.rate select{width:112px}
+.rate .rn{font-family:'IBM Plex Mono',monospace;font-size:20px;color:var(--brass);width:46px;text-align:right}
+.rate select{width:104px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
@@ -149,34 +153,51 @@ textarea{resize:vertical;min-height:70px;line-height:1.6}
 
 <script>
 /* =========================================================
-   RHYTHM v1.1 — 今日 / 回顾 / 日程安排
-   主任务(蓝)  可多个，今日只显示 DDL 最近的一个
-   固定任务(橙) 按每周几重复
-   附加任务(绿) 指定具体日期，可多天
+   RHYTHM v1.2 — Today / Review / Plan
+   Main task (blue)  : several allowed, Today shows the nearest deadline
+   Fixed task (amber): repeats on weekdays
+   Extra task (green): specific dates only
+   A missed day gets a red dot in Review.
    ========================================================= */
 
 var KEY='rhythm:v1';
-var WD=['周一','周二','周三','周四','周五','周六','周日'];
-var WD2=['一','二','三','四','五','六','日'];
-var KINDN={main:'主任务',fixed:'固定任务',extra:'附加任务'};
+var WD=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+var WD2=['Mo','Tu','We','Th','Fr','Sa','Su'];
+var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var KINDN={main:'Main task',fixed:'Fixed task',extra:'Extra task'};
+var UH='hours', UC='times';
 
-var MOOD=[['难过',-2],['有点难过',-1],['普通的一天',0],['有点开心',1],['开心',2]];
-var MENTAL=[['心烦',-1],['悲伤',-1],['孤独',-1],['焦虑',-1],['空虚',-1],['平静',0],['充实',1],['开心',1],['满足',1],['幸福',1]];
-var BODY=[['头疼',-1],['困',-1],['累',-1],['注意力涣散',-1],['身体不适',-1],['普通',0],['充满活力',1],['注意力集中',1],['睡好了',1]];
-var SOLO={'平静':'mental','普通':'body'};
-/* 原始记分：各项分数直接相加，不封顶 */
-var LEVELS=[{min:3,c:'A',label:'极好'},{min:1,c:'B',label:'好'},{min:0,c:'C',label:'普通'},{min:-2,c:'D',label:'差'},{min:-99,c:'E',label:'极差'}];
+var MOOD=[['Sad',-2],['A bit sad',-1],['An ordinary day',0],['A bit happy',1],['Happy',2]];
+var MENTAL=[['Irritated',-1],['Sorrowful',-1],['Lonely',-1],['Anxious',-1],['Empty',-1],['Calm',0],['Fulfilled',1],['Cheerful',1],['Satisfied',1],['Content',1]];
+var BODY=[['Headache',-1],['Sleepy',-1],['Tired',-1],['Unfocused',-1],['Unwell',-1],['Normal',0],['Energetic',1],['Focused',1],['Slept well',1]];
+var SOLO={'Calm':'mental','Normal':'body'};
+/* Raw scoring: every selected option's value is simply added up. */
+var LEVELS=[{min:3,c:'A',label:'Excellent'},{min:1,c:'B',label:'Good'},{min:0,c:'C',label:'Neutral'},{min:-2,c:'D',label:'Poor'},{min:-99,c:'E',label:'Very poor'}];
 
 var S=null, TAB='today', SUB=null, EDIT=null, CAL=null, DRAFT=null, SHEET=null, FORM=null;
 
 /* ---------- storage ---------- */
-function blank(){ return {v:2,mains:[],archive:[],fixed:[],extra:[],logs:{}}; }
+function blank(){ return {v:3,mains:[],archive:[],fixed:[],extra:[],logs:{}}; }
+function normUnit(u){ return (u==='\u6b21'||u===UC)? UC : UH; }  /* '\u6b21' = legacy unit value from the pre-English data */
 function migrate(d){
   d=Object.assign(blank(),d||{});
   if(d.main){ if(!d.mains.length) d.mains=[d.main]; delete d.main; }
   if(!Array.isArray(d.mains)) d.mains=[];
-  d.extra.forEach(function(t){ if(!t.dates){ t.dates=[]; } delete t.days; });
-  d.v=2;
+  d.mains.concat(d.fixed,d.extra,d.archive).forEach(function(t){ t.unit=normUnit(t.unit); });
+  d.extra.forEach(function(t){ if(!t.dates) t.dates=[]; delete t.days; });
+  for(var day in d.logs){
+    var l=d.logs[day];
+    for(var id in (l.tasks||{})) l.tasks[id].unit=normUnit(l.tasks[id].unit);
+  }
+  /* tasks created before v1.2 have no start date — infer it from their first
+     record so the new red dots never blame you for days before the task existed */
+  d.fixed.concat(d.extra).forEach(function(t){
+    if(t.created) return;
+    var first=null;
+    for(var day2 in d.logs){ if(d.logs[day2].tasks && d.logs[day2].tasks[t.id] && (!first||day2<first)) first=day2; }
+    t.created=first||tk();
+  });
+  d.v=3;
   return d;
 }
 function localGet(){ try{ var v=localStorage.getItem(KEY); return v?JSON.parse(v):null; }catch(e){ return null; } }
@@ -190,7 +211,7 @@ function load(cb){
 }
 function save(){
   var s=JSON.stringify(S);
-  try{ localStorage.setItem(KEY,s); }catch(e){ toast('存不进去了，先导出备份'); }
+  try{ localStorage.setItem(KEY,s); }catch(e){ toast("Couldn't save — export a backup"); }
   if(window.storage&&window.storage.set){ try{ window.storage.set(KEY,s).catch(function(){}); }catch(e){} }
 }
 
@@ -208,7 +229,8 @@ function nowHM(){ var d=new Date(); return pad(d.getHours())+':'+pad(Math.floor(
 function addHM(hm,mins){ var p=hm.split(':'),t=(+p[0])*60+(+p[1])+mins; t=((t%1440)+1440)%1440; return pad(Math.floor(t/60))+':'+pad(t%60); }
 function toast(t){ var e=document.getElementById('toast'); e.textContent=t; e.className='toast show'; setTimeout(function(){e.className='toast';},1700); }
 function clamp(x,a,b){ return Math.max(a,Math.min(b,x)); }
-function md(ds){ return ds.slice(5).replace('-','/'); }
+function md(ds){ var p=ds.split('-'); return MON[+p[1]-1]+' '+(+p[2]); }
+function isH(t){ return normUnit(t.unit)===UH; }
 
 function logOf(d){ if(!S.logs[d]) S.logs[d]={tasks:{},status:null,rating:null}; if(!S.logs[d].tasks) S.logs[d].tasks={}; return S.logs[d]; }
 function rec(d,id){ var l=S.logs[d]; return (l&&l.tasks)?l.tasks[id]:null; }
@@ -216,13 +238,12 @@ function allTasks(){ return S.mains.concat(S.fixed,S.extra); }
 function findTask(id){ return allTasks().filter(function(x){return x.id===id;})[0]; }
 function fmtAmt(r){
   if(!r) return '';
-  if(r.unit==='小时'){ var h=Math.floor(r.amount/60),m=r.amount%60; return (h?h+'h':'')+((m||!h)?m+'m':''); }
-  return r.amount+'次';
+  if(isH(r)){ var h=Math.floor(r.amount/60),m=r.amount%60; return (h?h+'h':'')+((m||!h)?m+'m':''); }
+  return r.amount+'x';
 }
-function toNum(r){ return r.unit==='小时'? r.amount/60 : r.amount; }
-function fmtPlan(v,t){ return (Math.round(v*10)/10)+(t.unit==='小时'?'h':'次'); }
+function toNum(r){ return isH(r)? r.amount/60 : r.amount; }
+function fmtPlan(v,t){ return (Math.round(v*10)/10)+(isH(t)?'h':'x'); }
 
-/* 今日显示的主任务：按截止日升序的第一个（过期的排最前，会一直催） */
 function primaryMain(){
   if(!S.mains.length) return null;
   return S.mains.slice().sort(function(a,b){ return a.due<b.due?-1:a.due>b.due?1:0; })[0];
@@ -231,7 +252,7 @@ function tasksFor(date){
   var out=[], w=wd(parseD(date));
   S.mains.forEach(function(t){ if(date<=t.due || rec(date,t.id)) out.push({kind:'main',t:t}); });
   out.sort(function(a,b){ return a.t.due<b.t.due?-1:1; });
-  S.fixed.forEach(function(t){ if(t.days.indexOf(w)>=0) out.push({kind:'fixed',t:t}); });
+  S.fixed.forEach(function(t){ if(t.days.indexOf(w)>=0 && date>=(t.created||'0000')) out.push({kind:'fixed',t:t}); });
   S.extra.forEach(function(t){ if(t.dates.indexOf(date)>=0 || rec(date,t.id)) out.push({kind:'extra',t:t}); });
   return out;
 }
@@ -243,7 +264,37 @@ function weekTotal(id,date){
   return s;
 }
 
-/* ---------- 记分（原始版：直接相加） ---------- */
+/* ---------- missed detection ----------
+   A past day counts as missed when:
+   · a fixed task was scheduled that weekday and never logged
+   · an extra task was set for that date and never logged
+   · a main task hit its deadline that day without reaching its planned amount
+   Today is never counted — the day isn't over yet.                       */
+function missesOn(date){
+  var out=[];
+  if(date>=tk()) return out;
+  var w=wd(parseD(date));
+  S.fixed.forEach(function(t){
+    if(t.days.indexOf(w)>=0 && date>=(t.created||'0000') && !rec(date,t.id)) out.push(t.title);
+  });
+  S.extra.forEach(function(t){
+    if(t.dates.indexOf(date)>=0 && !rec(date,t.id)) out.push(t.title);
+  });
+  S.mains.forEach(function(t){
+    if(t.due===date && totalFor(t.id)<t.planned) out.push(t.title+' (deadline)');
+  });
+  S.archive.forEach(function(t){
+    if(t.due===date && (t.done||0)<t.planned) out.push(t.title+' (deadline)');
+  });
+  return out;
+}
+function isMissed(date,id,kind){
+  if(date>=tk() || rec(date,id)) return false;
+  if(kind==='main'){ var m=findTask(id); return !!m && m.due===date && totalFor(id)<m.planned; }
+  return true;
+}
+
+/* ---------- scoring ---------- */
 function scoreOf(d){
   var s=0;
   MOOD.forEach(function(o){ if(o[0]===d.mood) s+=o[1]; });
@@ -259,90 +310,86 @@ function levelOf(sc){ for(var i=0;i<LEVELS.length;i++) if(sc>=LEVELS[i].min) ret
 function render(){
   document.getElementById('app').innerHTML =
     TAB==='today'? viewToday() : TAB==='review'? viewReview() : viewPlan();
-  var tabs=[['today','01','今日'],['review','02','回顾'],['plan','03','日程安排']];
+  var tabs=[['today','01','Today'],['review','02','Review'],['plan','03','Plan']];
   document.getElementById('nav').innerHTML=tabs.map(function(t){
     return '<button data-tab="'+t[0]+'" class="'+(TAB===t[0]?'on':'')+'">'+t[1]+'<span>'+t[2]+'</span></button>';
   }).join('');
 }
 
-/* ---------------- 今日 ---------------- */
+/* ---------------- Today ---------------- */
 function viewToday(){
   var date=tk(), l=S.logs[date]||{tasks:{},status:null,rating:null};
-  var h='<header><p class="eyebrow">'+date+' · '+WD[wd(today())]+'</p><h1>今日</h1></header>'+installHTML();
+  var h='<header><p class="eyebrow">'+WD[wd(today())]+' · '+md(date)+' '+date.slice(0,4)+'</p><h1>Today</h1></header>'+installHTML();
 
-  /* 主任务：只显示截止最近的一个 */
   var m=primaryMain();
-  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--blue-s)">主任务</span>'+
-     '<span class="sec-n">'+(S.mains.length>1? '共 '+S.mains.length+' 个 · 显示最近截止':'截止最近的一个')+'</span></div>';
+  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--blue-s)">Main task</span>'+
+     '<span class="sec-n">'+(S.mains.length>1? S.mains.length+' active · nearest deadline':'one at a time')+'</span></div>';
   if(!m){
-    h+='<div class="tb none">无主任务<br>去「日程安排」加一个</div>';
+    h+='<div class="tb none">No main task<br>Add one under Plan</div>';
   } else {
     var r=rec(date,m.id), left=diffDays(date,m.due), done=totalFor(m.id);
     var pct=m.planned?clamp(done/m.planned*100,0,100):0;
     var need=(left>0&&m.planned>done)?((m.planned-done)/left):0;
     if(r){
       h+='<button class="tb main done" data-task="'+m.id+'|main"><span class="ck">✓ '+fmtAmt(r)+' · '+r.start+'</span>'+
-         '<div class="t1">'+esc(m.title)+'</div><div class="t2">今天已记录 · 点击可修改</div></button>';
+         '<div class="t1">'+esc(m.title)+'</div><div class="t2">Logged today · tap to edit</div></button>';
     } else {
       h+='<button class="tb main" data-task="'+m.id+'|main"><div class="t1">'+esc(m.title)+'</div>'+
-         '<div class="t2">'+(left<0?'已过截止 '+(-left)+' 天':left===0?'今天截止':'还剩 '+left+' 天')+' · '+m.due+'</div>'+
+         '<div class="t2">'+(left<0?(-left)+' days overdue':left===0?'Due today':left+' days left')+' · '+m.due+'</div>'+
          '<div class="prog"><i style="width:'+pct+'%"></i></div>'+
-         '<div class="t2">'+fmtPlan(done,m)+' / '+fmtPlan(m.planned,m)+(need>0?' · 日均还需 '+fmtPlan(need,m):'')+'</div></button>';
+         '<div class="t2">'+fmtPlan(done,m)+' / '+fmtPlan(m.planned,m)+(need>0?' · '+fmtPlan(need,m)+'/day needed':'')+'</div></button>';
     }
-    if(left<0) h+='<div class="tb none" style="border-color:#6B4038;color:#D99A8A">这个主任务已经过期。去「日程安排 → 任务管理」归档，下一个才会顶上来。</div>';
+    if(left<0) h+='<div class="tb none" style="border-color:#6B4038;color:#D99A8A">This one is past its deadline. Archive it under Plan → Manage so the next task moves up.</div>';
   }
   h+='</div>';
 
-  h+=block(date,'fixed','固定任务','var(--amber-s)','今天没有固定任务');
-  h+=block(date,'extra','附加任务','var(--green-s)','今天没有附加任务');
+  h+=block(date,'fixed','Fixed tasks','var(--amber-s)','Nothing fixed today');
+  h+=block(date,'extra','Extra tasks','var(--green-s)','Nothing extra today');
 
-  /* 今日状态 */
   var st=l.status, lv=st?levelOf(st.score):null;
-  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--brass)">今日状态</span>'+
-     '<span class="sec-n">'+(st?'当天可改':'一天一次')+'</span></div>'+
+  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--brass)">Condition</span>'+
+     '<span class="sec-n">'+(st?'editable until midnight':'once a day')+'</span></div>'+
      '<button class="st-b" data-status="'+date+'"><span>'+
-     (st? '已记录 · 总分 '+(st.score>0?'+':'')+st.score : '还没记录今天')+
+     (st? 'Logged · score '+(st.score>0?'+':'')+st.score : 'Not logged yet')+
      '<br><span style="font-size:11.5px;color:var(--dim)">'+
-     (st? (esc((st.note||'').slice(0,26))||'点击查看或修改') : '只填心情就能提交，其余可展开补充')+
+     (st? (esc((st.note||'').slice(0,30))||'Tap to view or edit') : 'Mood alone is enough to submit')+
      '</span></span>'+
-     (lv?'<span class="lv lv'+lv.c+'">'+lv.label+'</span>':'<span class="lv lvC">未记</span>')+'</button></div>';
+     (lv?'<span class="lv lv'+lv.c+'">'+lv.label+'</span>':'<span class="lv lvC">—</span>')+'</button></div>';
 
-  /* 今日评分 */
-  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--brass)">今日评分</span>'+
-     '<span class="sec-n">满分 10 · 选了就存</span></div>'+ratingCard(date,l.rating)+'</div>';
+  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--brass)">Daily rating</span>'+
+     '<span class="sec-n">out of 10 · saves on select</span></div>'+ratingCard(date,l.rating)+'</div>';
   return h;
 }
 
 function ratingCard(date,rt){
   rt=rt||{};
-  var sel=function(id,val,allowEmpty){
-    var h='<select data-rate="'+date+'|'+id+'">';
-    if(allowEmpty) h+='<option value=""'+(val===null||val===undefined?' selected':'')+'>未填</option>';
-    for(var i=10;i>=0;i--) h+='<option value="'+i+'"'+(val===i?' selected':'')+'>'+i+' 分</option>';
+  var sel=function(id,val){
+    var h='<select data-rate="'+date+'|'+id+'"><option value=""'+(val===null||val===undefined?' selected':'')+'>—</option>';
+    for(var i=10;i>=0;i--) h+='<option value="'+i+'"'+(val===i?' selected':'')+'>'+i+'</option>';
     return h+'</select>';
   };
+  var show=function(v){ return (v!==undefined&&v!==null)? v : '—'; };
   return '<div class="card">'+
-    '<div class="rate"><span class="rl">自我评分</span>'+
-      '<span class="rn">'+(rt.self!==undefined&&rt.self!==null?rt.self:'—')+'</span>'+sel('self',rt.self,true)+'</div>'+
-    '<div class="rate"><span class="rl">他人评分<br><span style="font-size:11px;color:var(--dim)">可以空着</span></span>'+
-      '<span class="rn">'+(rt.other!==undefined&&rt.other!==null?rt.other:'—')+'</span>'+sel('other',rt.other,true)+'</div>'+
-    '</div>';
+    '<div class="rate"><span class="rl">Self</span><span class="rn">'+show(rt.self)+'</span>'+sel('self',rt.self)+'</div>'+
+    '<div class="rate"><span class="rl">From others'+
+      '<br><span style="font-size:11px;color:var(--dim)">optional</span></span>'+
+      '<span class="rn">'+show(rt.other)+'</span>'+sel('other',rt.other)+'</div></div>';
 }
 
 function block(date,kind,title,color,noneText){
   var list=tasksFor(date).filter(function(x){return x.kind===kind;});
   var h='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:'+color+'">'+title+'</span>'+
-        '<span class="sec-n">'+(list.length?list.length+' 项':'')+'</span></div>';
+        '<span class="sec-n">'+(list.length?list.length:'')+'</span></div>';
   if(!list.length) return h+'<div class="tb none">'+noneText+'</div></div>';
   list.forEach(function(x){
     var r=rec(date,x.t.id);
     if(r){
       h+='<button class="tb '+kind+' done" data-task="'+x.t.id+'|'+kind+'"><span class="ck">✓ '+fmtAmt(r)+'</span>'+
-         '<div class="t1">'+esc(x.t.title)+'</div><div class="t2">'+r.start+(r.end?'–'+r.end:'')+' · 点击可修改</div></button>';
+         '<div class="t1">'+esc(x.t.title)+'</div><div class="t2">'+r.start+(r.end?'–'+r.end:'')+' · tap to edit</div></button>';
     } else {
       var sub = kind==='fixed'
-        ? '本周 '+fmtPlan(weekTotal(x.t.id,date),x.t)+' / '+fmtPlan(x.t.planned,x.t)
-        : '计划 '+fmtPlan(x.t.planned,x.t);
+        ? 'This week '+fmtPlan(weekTotal(x.t.id,date),x.t)+' / '+fmtPlan(x.t.planned,x.t)
+        : 'Planned '+fmtPlan(x.t.planned,x.t);
       h+='<button class="tb '+kind+'" data-task="'+x.t.id+'|'+kind+'"><div class="t1">'+esc(x.t.title)+'</div>'+
          '<div class="t2">'+sub+'</div></button>';
     }
@@ -350,15 +397,15 @@ function block(date,kind,title,color,noneText){
   return h+'</div>';
 }
 
-/* ---------------- 回顾 ---------------- */
+/* ---------------- Review ---------------- */
 function viewReview(){
   if(!CAL) CAL=new Date(today().getFullYear(),today().getMonth(),1);
   var y=CAL.getFullYear(), mo=CAL.getMonth();
   var lead=wd(new Date(y,mo,1)), n=new Date(y,mo+1,0).getDate();
-  var h='<header><p class="eyebrow">review</p><h1>回顾</h1></header>'+
+  var h='<header><p class="eyebrow">review</p><h1>Review</h1></header>'+
     '<div class="sec"><div class="cal-h"><button data-mv="-1">‹</button>'+
-    '<span class="m">'+y+'.'+pad(mo+1)+'</span><button data-mv="1">›</button>'+
-    '<span style="margin-left:auto;font-size:11px;color:var(--dim)">点日期可补记</span></div><div class="cal">';
+    '<span class="m">'+MON[mo]+' '+y+'</span><button data-mv="1">›</button>'+
+    '<span style="margin-left:auto;font-size:11px;color:var(--dim)">tap a day to backfill</span></div><div class="cal">';
   WD2.forEach(function(w){ h+='<div class="cw">'+w+'</div>'; });
   for(var i=0;i<lead;i++) h+='<div class="cd pad"></div>';
   for(var day=1;day<=n;day++){
@@ -367,24 +414,34 @@ function viewReview(){
     for(var id in t) kinds[t[id].kind]=1;
     var dots=(kinds.main?'<i style="background:var(--blue-s)"></i>':'')+
              (kinds.fixed?'<i style="background:var(--amber-s)"></i>':'')+
-             (kinds.extra?'<i style="background:var(--green-s)"></i>':'');
+             (kinds.extra?'<i style="background:var(--green-s)"></i>':'')+
+             (missesOn(ds).length?'<i style="background:var(--red)"></i>':'');
     var lv=l.status?levelOf(l.status.score):null;
     h+='<button class="cd'+(ds===tk()?' today':'')+(ds>tk()?' out':'')+'" data-day="'+ds+'">'+
        '<span class="n">'+day+'</span><span class="dots">'+dots+'</span>'+
        (lv?'<span class="lvbar" style="background:'+lvColor(lv.c)+'"></span>':'')+'</button>';
   }
-  return h+'</div></div>'+monthSummary(y,mo);
+  h+='</div><div class="legend">'+
+     '<span><i style="background:var(--blue-s)"></i>main</span>'+
+     '<span><i style="background:var(--amber-s)"></i>fixed</span>'+
+     '<span><i style="background:var(--green-s)"></i>extra</span>'+
+     '<span><i style="background:var(--red)"></i>missed</span>'+
+     '<span>bar = condition</span></div></div>';
+  return h+monthSummary(y,mo);
 }
 function lvColor(c){ return {A:'#5FC6E0',B:'#7FD09A',C:'#8A7C6E',D:'#D9A07E',E:'#E07A7A'}[c]; }
 
 function monthSummary(y,mo){
-  var mainH=0,mainC=0,fixedN=0,extraN=0,scores=[],cnt={},selfs=[],others=[];
+  var mainH=0,mainC=0,fixedN=0,extraN=0,scores=[],cnt={},selfs=[],others=[],missDays=0,missItems=0;
   var n=new Date(y,mo+1,0).getDate();
   for(var day=1;day<=n;day++){
-    var l=S.logs[y+'-'+pad(mo+1)+'-'+pad(day)]; if(!l) continue;
+    var ds=y+'-'+pad(mo+1)+'-'+pad(day), l=S.logs[ds];
+    var ms=missesOn(ds);
+    if(ms.length){ missDays++; missItems+=ms.length; }
+    if(!l) continue;
     for(var id in (l.tasks||{})){
       var r=l.tasks[id];
-      if(r.kind==='main'){ if(r.unit==='小时') mainH+=r.amount/60; else mainC+=r.amount; }
+      if(r.kind==='main'){ if(isH(r)) mainH+=r.amount/60; else mainC+=r.amount; }
       else if(r.kind==='fixed') fixedN++;
       else extraN++;
     }
@@ -401,53 +458,53 @@ function monthSummary(y,mo){
   var sAvg=scores.length? scores.reduce(function(a,b){return a+b;},0)/scores.length : null;
   var lv=sAvg===null?null:levelOf(Math.round(sAvg));
   var top=null,tn=0; for(var o in cnt) if(cnt[o]>tn){ top=o; tn=cnt[o]; }
-
   var mainTxt=[];
-  if(mainH) mainTxt.push((Math.round(mainH*10)/10)+' 小时');
-  if(mainC) mainTxt.push(mainC+' 次');
+  if(mainH) mainTxt.push((Math.round(mainH*10)/10)+' h');
+  if(mainC) mainTxt.push(mainC+' x');
 
-  var h='<div class="sec"><div class="sec-h"><span class="sec-t">本月总结</span>'+
-    '<span class="sec-n">'+scores.length+' 天有状态记录</span></div><div class="card">'+
-    kv('主任务完成', mainTxt.length?mainTxt.join(' + '):'—')+
-    kv('固定任务完成','共 '+fixedN+' 次')+
-    kv('附加任务完成','共 '+extraN+' 次')+
-    kv('状态总体', lv? lv.label+'（均分 '+(Math.round(sAvg*10)/10)+'）':'—')+
-    kv('选得最多的状态', top? top+'（'+tn+' 次）':'—')+
-    kv('自我评分均值', avg(selfs)!==null? avg(selfs)+' / 10（'+selfs.length+' 天）':'—')+
-    kv('他人评分均值', avg(others)!==null? avg(others)+' / 10（'+others.length+' 天）':'—')+
+  var h='<div class="sec"><div class="sec-h"><span class="sec-t">This month</span>'+
+    '<span class="sec-n">'+scores.length+' days with a condition log</span></div><div class="card">'+
+    kv('Main task done', mainTxt.length?mainTxt.join(' + '):'—')+
+    kv('Fixed tasks done', fixedN+' times')+
+    kv('Extra tasks done', extraN+' times')+
+    kv('Missed days', missDays? missDays+' days ('+missItems+' items)':'none')+
+    kv('Overall condition', lv? lv.label+' (avg '+(Math.round(sAvg*10)/10)+')':'—')+
+    kv('Most selected', top? top+' ('+tn+'x)':'—')+
+    kv('Avg self rating', avg(selfs)!==null? avg(selfs)+' / 10 · '+selfs.length+' days':'—')+
+    kv('Avg rating from others', avg(others)!==null? avg(others)+' / 10 · '+others.length+' days':'—')+
     '</div></div>';
 
   if(S.mains.length){
-    h+='<div class="sec"><div class="sec-h"><span class="sec-t">主任务进度</span></div><div class="card">';
+    h+='<div class="sec"><div class="sec-h"><span class="sec-t">Main task progress</span></div><div class="card">';
     S.mains.slice().sort(function(a,b){return a.due<b.due?-1:1;}).forEach(function(m){
       var left=diffDays(tk(),m.due);
-      h+=kv(esc(m.title), fmtPlan(totalFor(m.id),m)+' / '+fmtPlan(m.planned,m)+'　'+(left>=0?'剩 '+left+'天':'已过期'));
+      h+=kv(esc(m.title), fmtPlan(totalFor(m.id),m)+' / '+fmtPlan(m.planned,m)+'　'+(left>=0?left+'d left':'overdue'));
     });
     h+='</div></div>';
   }
 
-  h+='<div class="sec"><div class="card"><p class="empty">数据只存在这台手机里。定期复制一份，换机或清缓存都不会丢。</p>'+
-     '<div style="display:flex;gap:8px;margin-top:12px"><button class="mini" data-act="export">复制全部数据</button>'+
-     '<button class="mini" data-act="import">粘贴恢复</button></div></div></div>';
+  h+='<div class="sec"><div class="card"><p class="empty">Your data lives only on this phone. Copy a backup now and then.</p>'+
+     '<div style="display:flex;gap:8px;margin-top:12px"><button class="mini" data-act="export">Copy all data</button>'+
+     '<button class="mini" data-act="import">Paste to restore</button></div></div></div>';
   return h;
 }
 function kv(a,b){ return '<div class="kv"><span class="k">'+a+'</span><span class="v">'+b+'</span></div>'; }
 
-/* ---------------- 日程安排 ---------------- */
+/* ---------------- Plan ---------------- */
 function viewPlan(){
-  if(SUB) return '<button class="back" data-sub="">‹ 返回</button>'+(SUB==='manage'?viewManage():viewForm());
-  return '<header><p class="eyebrow">plan</p><h1>日程安排</h1></header><div class="sec">'+
-    big('main','安排主任务', S.mains.length? S.mains.length+' 个进行中 · 最近截止 '+primaryMain().due : '现在没有主任务')+
-    big('fixed','安排固定任务', S.fixed.length? S.fixed.length+' 个进行中':'还没有固定任务')+
-    big('extra','安排附加任务', S.extra.length? S.extra.length+' 个已安排':'还没有附加任务')+
-    big('manage','任务管理','修改、删除、归档已完成的主任务')+'</div>';
+  if(SUB) return '<button class="back" data-sub="">‹ Back</button>'+(SUB==='manage'?viewManage():viewForm());
+  return '<header><p class="eyebrow">plan</p><h1>Plan</h1></header><div class="sec">'+
+    big('main','Set a main task', S.mains.length? S.mains.length+' active · next due '+primaryMain().due : 'No main task right now')+
+    big('fixed','Set a fixed task', S.fixed.length? S.fixed.length+' active':'No fixed tasks yet')+
+    big('extra','Set an extra task', S.extra.length? S.extra.length+' scheduled':'No extra tasks yet')+
+    big('manage','Manage tasks','Edit, delete, archive finished main tasks')+'</div>';
 }
 function big(id,a,b){ return '<button class="big" data-sub="'+id+'"><div class="b1">'+a+'</div><div class="b2">'+b+'</div></button>'; }
 
 function initForm(){
   var e=EDIT||{};
   FORM={ title:e.title||'', due:e.due||'', planned:(e.planned!==undefined?e.planned:''),
-         unit:e.unit||'小时', days:(e.days||[]).slice(), dates:(e.dates||[]).slice() };
+         unit:normUnit(e.unit), days:(e.days||[]).slice(), dates:(e.dates||[]).slice() };
 }
 function pullForm(){
   if(!FORM) return;
@@ -461,89 +518,85 @@ function pullForm(){
 function viewForm(){
   if(!FORM) initForm();
   var isMain=SUB==='main', isExtra=SUB==='extra', f=FORM;
-  var h='<h1 style="font-size:21px">'+({main:'安排主任务',fixed:'安排固定任务',extra:'安排附加任务'}[SUB])+'</h1>'+
+  var h='<h1 style="font-size:21px">'+({main:'Main task',fixed:'Fixed task',extra:'Extra task'}[SUB])+'</h1>'+
     '<p class="sub">'+(isMain
-      ? '可以放多个。今日页只显示截止日最近的那一个，其余在「任务管理」里。'
-      : isExtra ? '指定具体哪几天做，不按周重复。只会在那几天出现在今日页。'
-                : '按周重复。今日页只显示今天该做的那几个。')+'</p>'+
+      ? 'You can keep several. Today shows only the one with the nearest deadline; the rest wait under Manage.'
+      : isExtra ? 'Pick the exact days. It appears on Today only on those dates.'
+                : 'Repeats weekly. Today shows only the ones due today.')+'</p>'+
     '<div class="card" style="margin-top:16px">'+
-    '<label class="f">任务内容</label><input id="f_title" value="'+esc(f.title)+'" placeholder="'+
-    (isMain?'例：AIG 一次面试准备':isExtra?'例：去移民律师咨询 / 提交作品集':'例：游泳 / 打鼓 / 英语口语')+'">';
+    '<label class="f">Task name</label><input id="f_title" value="'+esc(f.title)+'" placeholder="'+
+    (isMain?'e.g. AIG first interview prep':isExtra?'e.g. Immigration lawyer call':'e.g. Swimming / Drums / Speaking')+'">';
 
   if(isMain){
-    h+='<label class="f">截止时间</label><input id="f_due" type="date" value="'+f.due+'"><label class="f">期限内计划量</label>';
+    h+='<label class="f">Deadline</label><input id="f_due" type="date" value="'+f.due+'"><label class="f">Total planned by then</label>';
   } else if(isExtra){
-    h+='<label class="f">具体日期（可以加好几天）</label>'+
+    h+='<label class="f">Specific dates (add as many as you like)</label>'+
        '<div class="row"><input id="f_newdate" type="date" value="'+tk()+'">'+
-       '<button class="mini" data-act="add-date" style="padding:11px 14px">添加</button></div>';
+       '<button class="mini" data-act="add-date" style="padding:11px 16px">Add</button></div>';
     if(f.dates.length){
       h+='<div class="opts" style="margin-top:10px">';
       f.dates.slice().sort().forEach(function(d){
-        h+='<button class="chip" data-rmdate="'+d+'">'+md(d)+' '+WD2[wd(parseD(d))]+' ✕</button>';
+        h+='<button class="chip" data-rmdate="'+d+'">'+md(d)+' ✕</button>';
       });
       h+='</div>';
-    } else {
-      h+='<p class="sh-s" style="margin-top:9px">还没选日期。</p>';
-    }
-    h+='<label class="f">每天的计划量</label>';
+    } else h+='<p class="sh-s" style="margin-top:9px">No dates picked yet.</p>';
+    h+='<label class="f">Planned per day</label>';
   } else {
-    h+='<label class="f">固定时间（每周几，可多选）</label><div class="opts" id="f_days">';
+    h+='<label class="f">Repeats on (multi-select)</label><div class="opts" id="f_days">';
     for(var i=0;i<7;i++) h+='<button class="op'+(f.days.indexOf(i)>=0?' on':'')+'" data-day7="'+i+'">'+WD[i]+'</button>';
-    h+='</div><label class="f">周计划量</label>';
+    h+='</div><label class="f">Planned per week</label>';
   }
 
-  h+='<div class="row"><input id="f_plan" type="number" inputmode="decimal" step="0.5" min="0" value="'+f.planned+'" placeholder="数字">'+
-     '<select id="f_unit" style="width:112px"><option value="小时"'+(f.unit!=='次'?' selected':'')+'>小时</option>'+
-     '<option value="次"'+(f.unit==='次'?' selected':'')+'>次</option></select></div>'+
-     '<p class="sh-s" style="margin-top:9px">单位选「小时」→ 记录时长和开始时刻；选「次」→ 记录完成量和时间段。</p>'+
-     '<button class="btn'+(isMain?' blue':'')+'" data-act="save-task">'+(EDIT&&EDIT.id?'保存修改':'确认安排')+'</button></div>';
+  h+='<div class="row"><input id="f_plan" type="number" inputmode="decimal" step="0.5" min="0" value="'+f.planned+'" placeholder="number">'+
+     '<select id="f_unit" style="width:112px"><option value="'+UH+'"'+(f.unit!==UC?' selected':'')+'>hours</option>'+
+     '<option value="'+UC+'"'+(f.unit===UC?' selected':'')+'>times</option></select></div>'+
+     '<p class="sh-s" style="margin-top:9px">Hours → you log a duration and a start time. Times → you log an amount and a time range.</p>'+
+     '<button class="btn'+(isMain?' blue':'')+'" data-act="save-task">'+(EDIT&&EDIT.id?'Save changes':'Add task')+'</button></div>';
   return h;
 }
 
 function viewManage(){
-  var h='<h1 style="font-size:21px;margin-bottom:14px">任务管理</h1>';
-  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--blue-s)">主任务</span>'+
-     '<span class="sec-n">'+S.mains.length+' 个</span></div><div class="card">';
-  if(!S.mains.length) h+='<p class="empty">现在没有主任务。</p>';
+  var h='<h1 style="font-size:21px;margin-bottom:14px">Manage tasks</h1>';
+  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--blue-s)">Main</span>'+
+     '<span class="sec-n">'+S.mains.length+'</span></div><div class="card">';
+  if(!S.mains.length) h+='<p class="empty">No main task right now.</p>';
   var pm=primaryMain();
   S.mains.slice().sort(function(a,b){return a.due<b.due?-1:1;}).forEach(function(m){
     var left=diffDays(tk(),m.due);
-    h+='<div class="item"><div><div class="n1">'+(pm&&pm.id===m.id?'▸ ':'')+esc(m.title)+'</div><div class="n2">截止 '+m.due+
-      ' · '+(left<0?'已过期':'剩 '+left+'天')+' · '+fmtPlan(totalFor(m.id),m)+' / '+fmtPlan(m.planned,m)+
-      '</div></div><div style="display:flex;gap:6px"><button class="mini" data-edit="mains|'+m.id+'">编辑</button>'+
-      '<button class="mini" data-arch="'+m.id+'">归档</button></div></div>';
+    h+='<div class="item"><div><div class="n1">'+(pm&&pm.id===m.id?'▸ ':'')+esc(m.title)+'</div><div class="n2">due '+m.due+
+      ' · '+(left<0?'overdue':left+'d left')+' · '+fmtPlan(totalFor(m.id),m)+' / '+fmtPlan(m.planned,m)+
+      '</div></div><div style="display:flex;gap:6px"><button class="mini" data-edit="mains|'+m.id+'">Edit</button>'+
+      '<button class="mini" data-arch="'+m.id+'">Archive</button></div></div>';
   });
-  h+='</div><p class="sh-s" style="margin-top:8px">▸ 是今日页正在显示的那个。</p></div>';
+  h+='</div>'+(S.mains.length?'<p class="sh-s" style="margin-top:8px">▸ is the one showing on Today.</p>':'')+'</div>';
 
-  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--amber-s)">固定任务</span></div><div class="card">';
-  if(!S.fixed.length) h+='<p class="empty">还没有。</p>';
+  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--amber-s)">Fixed</span></div><div class="card">';
+  if(!S.fixed.length) h+='<p class="empty">None yet.</p>';
   S.fixed.forEach(function(t){
     h+='<div class="item"><div><div class="n1">'+esc(t.title)+'</div><div class="n2">'+
-      t.days.slice().sort().map(function(i){return WD2[i];}).join('·')+' · 周 '+fmtPlan(t.planned,t)+
-      '</div></div><div style="display:flex;gap:6px"><button class="mini" data-edit="fixed|'+t.id+'">编辑</button>'+
-      '<button class="mini red" data-del="fixed|'+t.id+'">删除</button></div></div>';
+      t.days.slice().sort().map(function(i){return WD2[i];}).join(' ')+' · '+fmtPlan(t.planned,t)+'/week'+
+      '</div></div><div style="display:flex;gap:6px"><button class="mini" data-edit="fixed|'+t.id+'">Edit</button>'+
+      '<button class="mini red" data-del="fixed|'+t.id+'">Delete</button></div></div>';
   });
   h+='</div></div>';
 
-  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--green-s)">附加任务</span></div><div class="card">';
-  if(!S.extra.length) h+='<p class="empty">还没有。</p>';
-  S.extra.slice().sort(function(a,b){
-    return (a.dates[0]||'9999')<(b.dates[0]||'9999')?-1:1;
-  }).forEach(function(t){
+  h+='<div class="sec"><div class="sec-h"><span class="sec-t" style="color:var(--green-s)">Extra</span></div><div class="card">';
+  if(!S.extra.length) h+='<p class="empty">None yet.</p>';
+  S.extra.slice().sort(function(a,b){ return (a.dates[0]||'9999')<(b.dates[0]||'9999')?-1:1; }).forEach(function(t){
     var ds=t.dates.slice().sort(), up=ds.filter(function(d){return d>=tk();});
     h+='<div class="item"><div><div class="n1">'+esc(t.title)+'</div><div class="n2">'+
-      (ds.length? ds.slice(0,4).map(md).join(' · ')+(ds.length>4?' …+'+(ds.length-4):'') : '没有日期')+
-      ' · '+fmtPlan(t.planned,t)+(up.length?'':' · 已过')+
-      '</div></div><div style="display:flex;gap:6px"><button class="mini" data-edit="extra|'+t.id+'">编辑</button>'+
-      '<button class="mini red" data-del="extra|'+t.id+'">删除</button></div></div>';
+      (ds.length? ds.slice(0,3).map(md).join(' · ')+(ds.length>3?' +'+(ds.length-3):'') : 'no dates')+
+      ' · '+fmtPlan(t.planned,t)+(up.length?'':' · past')+
+      '</div></div><div style="display:flex;gap:6px"><button class="mini" data-edit="extra|'+t.id+'">Edit</button>'+
+      '<button class="mini red" data-del="extra|'+t.id+'">Delete</button></div></div>';
   });
   h+='</div></div>';
 
   if(S.archive.length){
-    h+='<div class="sec"><div class="sec-h"><span class="sec-t">已归档的主任务</span></div><div class="card">';
+    h+='<div class="sec"><div class="sec-h"><span class="sec-t">Archived main tasks</span></div><div class="card">';
     S.archive.slice().reverse().forEach(function(a){
-      h+='<div class="item"><div><div class="n1">'+esc(a.title)+'</div><div class="n2">截止 '+a.due+
-        ' · 最终 '+fmtPlan(a.done||0,a)+' / '+fmtPlan(a.planned,a)+'</div></div></div>';
+      h+='<div class="item"><div><div class="n1">'+esc(a.title)+'</div><div class="n2">due '+a.due+
+        ' · final '+fmtPlan(a.done||0,a)+' / '+fmtPlan(a.planned,a)+'</div></div></div>';
     });
     h+='</div></div>';
   }
@@ -562,51 +615,51 @@ function selOpts(a,b,step,val,fmt){
 }
 
 function taskSheet(date,id,kind){
-  var t=findTask(id); if(!t){ toast('这个任务已经不在了'); return; }
+  var t=findTask(id); if(!t){ toast('That task no longer exists'); return; }
   SHEET={type:'task',date:date,id:id,kind:kind};
   var r=rec(date,id)||{};
   var start=r.start||nowHM(), end=r.end||addHM(start,60);
-  var mins=(r.unit==='小时')?r.amount:60, cnt=(r.unit==='次')?r.amount:1;
+  var mins=(r.amount&&isH(r))?r.amount:60, cnt=(r.amount&&!isH(r))?r.amount:1;
   var h='<div class="sh-h"><div><div class="sh-t">'+esc(t.title)+'</div><div class="sh-s">'+
-    (date===tk()?'今天':'补记 '+date+' · '+WD[wd(parseD(date))])+' · '+KINDN[kind]+'</div></div>'+
+    (date===tk()?'Today':'Backfill · '+WD[wd(parseD(date))]+' '+md(date))+' · '+KINDN[kind]+'</div></div>'+
     '<button class="x" data-act="close">✕</button></div>';
-  if(t.unit==='小时'){
-    h+='<label class="f">时长</label><div class="row">'+
-       '<select id="m_h">'+selOpts(0,12,1,Math.floor(mins/60),function(i){return i+' 小时';})+'</select>'+
-       '<select id="m_m">'+selOpts(0,55,5,Math.round((mins%60)/5)*5,function(i){return i+' 分';})+'</select></div>'+
-       '<label class="f">开始时刻</label><div class="row">'+
-       '<select id="m_sh">'+selOpts(0,23,1,+start.split(':')[0],function(i){return pad(i)+' 时';})+'</select>'+
-       '<select id="m_sm">'+selOpts(0,55,5,+start.split(':')[1],function(i){return pad(i)+' 分';})+'</select></div>'+
-       '<p class="sh-s" style="margin-top:9px">结束时刻会自动算出来。</p>';
+  if(isH(t)){
+    h+='<label class="f">Duration</label><div class="row">'+
+       '<select id="m_h">'+selOpts(0,12,1,Math.floor(mins/60),function(i){return i+' h';})+'</select>'+
+       '<select id="m_m">'+selOpts(0,55,5,Math.round((mins%60)/5)*5,function(i){return i+' min';})+'</select></div>'+
+       '<label class="f">Started at</label><div class="row">'+
+       '<select id="m_sh">'+selOpts(0,23,1,+start.split(':')[0],function(i){return pad(i)+' h';})+'</select>'+
+       '<select id="m_sm">'+selOpts(0,55,5,+start.split(':')[1],function(i){return pad(i)+' min';})+'</select></div>'+
+       '<p class="sh-s" style="margin-top:9px">The end time is calculated for you.</p>';
   } else {
-    h+='<label class="f">完成量</label>'+
-       '<select id="m_c">'+selOpts(1,20,1,cnt,function(i){return i+' 次';})+'</select>'+
-       '<label class="f">时间段（开始 → 结束）</label><div class="row">'+
-       '<select id="m_sh">'+selOpts(0,23,1,+start.split(':')[0],function(i){return pad(i)+' 时';})+'</select>'+
-       '<select id="m_sm">'+selOpts(0,55,5,+start.split(':')[1],function(i){return pad(i)+' 分';})+'</select></div>'+
+    h+='<label class="f">Amount</label>'+
+       '<select id="m_c">'+selOpts(1,20,1,cnt,function(i){return i+'x';})+'</select>'+
+       '<label class="f">Time range (start → end)</label><div class="row">'+
+       '<select id="m_sh">'+selOpts(0,23,1,+start.split(':')[0],function(i){return pad(i)+' h';})+'</select>'+
+       '<select id="m_sm">'+selOpts(0,55,5,+start.split(':')[1],function(i){return pad(i)+' min';})+'</select></div>'+
        '<div class="row" style="margin-top:8px">'+
-       '<select id="m_eh">'+selOpts(0,23,1,+end.split(':')[0],function(i){return pad(i)+' 时';})+'</select>'+
-       '<select id="m_em">'+selOpts(0,55,5,+end.split(':')[1],function(i){return pad(i)+' 分';})+'</select></div>';
+       '<select id="m_eh">'+selOpts(0,23,1,+end.split(':')[0],function(i){return pad(i)+' h';})+'</select>'+
+       '<select id="m_em">'+selOpts(0,55,5,+end.split(':')[1],function(i){return pad(i)+' min';})+'</select></div>';
   }
-  h+='<button class="btn'+(kind==='main'?' blue':'')+'" data-act="save-rec">确认</button>';
-  if(rec(date,id)) h+='<button class="btn ghost" data-act="del-rec">取消这天的记录</button>';
+  h+='<button class="btn'+(kind==='main'?' blue':'')+'" data-act="save-rec">Confirm</button>';
+  if(rec(date,id)) h+='<button class="btn ghost" data-act="del-rec">Remove this record</button>';
   openSheet(h);
 }
 
 function saveRec(){
   var s=SHEET, t=findTask(s.id), g=function(x){return document.getElementById(x);};
   var start=pad(+g('m_sh').value)+':'+pad(+g('m_sm').value);
-  var r={kind:s.kind,title:t.title,unit:t.unit,start:start};
-  if(t.unit==='小时'){
+  var r={kind:s.kind,title:t.title,unit:normUnit(t.unit),start:start};
+  if(isH(t)){
     r.amount=(+g('m_h').value)*60+(+g('m_m').value);
-    if(r.amount<=0){ toast('时长不能是 0'); return; }
+    if(r.amount<=0){ toast("Duration can't be zero"); return; }
     r.end=addHM(start,r.amount);
   } else {
     r.amount=+g('m_c').value;
     r.end=pad(+g('m_eh').value)+':'+pad(+g('m_em').value);
   }
   logOf(s.date).tasks[s.id]=r;
-  save(); closeSheet(); render(); toast('已记录');
+  save(); closeSheet(); render(); toast('Logged');
 }
 
 function statusSheet(date){
@@ -618,53 +671,55 @@ function statusSheet(date){
 }
 function drawStatus(){
   var date=SHEET.date, d=DRAFT;
-  var h='<div class="sh-h"><div><div class="sh-t">今日状态</div><div class="sh-s">'+
-    (date===tk()?'今天 · 提交后当天还能改':'补记 '+date)+'</div></div><button class="x" data-act="close">✕</button></div>';
+  var h='<div class="sh-h"><div><div class="sh-t">Condition</div><div class="sh-s">'+
+    (date===tk()?'Today · editable until midnight':'Backfill · '+md(date))+'</div></div>'+
+    '<button class="x" data-act="close">✕</button></div>';
   if(SHEET.locked){
-    h+='<p class="empty">这天已经记录过，跨天后不再修改。</p><div class="card" style="margin-top:14px">'+
-      kv('心情',esc(d.mood||'—'))+kv('心理',d.mental.join(' · ')||'—')+kv('身体',d.body.join(' · ')||'—')+'</div>'+
+    h+='<p class="empty">Already logged. Locked once the day is over.</p><div class="card" style="margin-top:14px">'+
+      kv('Mood',esc(d.mood||'—'))+kv('Mental',d.mental.join(' · ')||'—')+kv('Physical',d.body.join(' · ')||'—')+'</div>'+
       (d.note?'<p class="empty" style="margin-top:14px">'+esc(d.note)+'</p>':'');
     openSheet(h); return;
   }
-  h+='<label class="f">今天心情（必填 · 单选）</label><div class="opts">';
+  h+='<label class="f">Mood (required · pick one)</label><div class="opts">';
   MOOD.forEach(function(o){ h+='<button class="op'+(d.mood===o[0]?' on':'')+'" data-mood="'+o[0]+'">'+o[0]+'</button>'; });
   h+='</div>';
   if(!d.open){
-    h+='<button class="fold" data-act="unfold">＋ 展开补充心理和身体状态（可跳过）</button>';
+    h+='<button class="fold" data-act="unfold">＋ Add mental and physical state (optional)</button>';
   } else {
-    h+='<label class="f">今天心理状态（多选）</label><div class="opts">';
+    h+='<label class="f">Mental state (multi-select)</label><div class="opts">';
     MENTAL.forEach(function(o){ h+='<button class="op '+(o[1]>0?'pos':o[1]<0?'neg':'')+(d.mental.indexOf(o[0])>=0?' on':'')+'" data-mental="'+o[0]+'">'+o[0]+'</button>'; });
-    h+='</div><label class="f">今天身体状态（多选）</label><div class="opts">';
+    h+='</div><label class="f">Physical state (multi-select)</label><div class="opts">';
     BODY.forEach(function(o){ h+='<button class="op '+(o[1]>0?'pos':o[1]<0?'neg':'')+(d.body.indexOf(o[0])>=0?' on':'')+'" data-body="'+o[0]+'">'+o[0]+'</button>'; });
     h+='</div>';
   }
-  h+='<label class="f">记录今天</label><textarea id="s_note" placeholder="随便写点什么，或者留空">'+esc(d.note)+'</textarea>';
+  h+='<label class="f">Note</label><textarea id="s_note" placeholder="Anything about today, or leave it blank">'+esc(d.note)+'</textarea>';
   var sc=d.mood?scoreOf(d):null, lv=(sc===null)?null:levelOf(sc);
-  h+='<div class="kv" style="margin-top:15px"><span class="k">总分</span>'+
+  h+='<div class="kv" style="margin-top:15px"><span class="k">Total</span>'+
      '<span class="v">'+(sc===null?'—':(sc>0?'+':'')+sc+'　'+lv.label)+'</span></div>'+
-     '<button class="btn" data-act="save-status"'+(d.mood?'':' disabled')+'>确认提交</button>';
+     '<button class="btn" data-act="save-status"'+(d.mood?'':' disabled')+'>Submit</button>';
   openSheet(h);
 }
 function pullNote(){ var e=document.getElementById('s_note'); if(e&&DRAFT) DRAFT.note=e.value; }
 
 function daySheet(date){
-  if(date>tk()){ toast('还没到那天'); return; }
+  if(date>tk()){ toast('Not there yet'); return; }
   var list=tasksFor(date), l=S.logs[date]||{tasks:{},status:null,rating:null};
   var st=l.status, lv=st?levelOf(st.score):null, rt=l.rating||{};
-  var h='<div class="sh-h"><div><div class="sh-t">'+date+'　'+WD[wd(parseD(date))]+'</div>'+
-    '<div class="sh-s">'+(date===tk()?'今天':'可以补记')+'</div></div><button class="x" data-act="close">✕</button></div>';
-  if(!list.length) h+='<p class="empty">这天没有安排任务。</p>';
+  var h='<div class="sh-h"><div><div class="sh-t">'+WD[wd(parseD(date))]+' · '+md(date)+'</div>'+
+    '<div class="sh-s">'+(date===tk()?'Today':'You can backfill this day')+'</div></div>'+
+    '<button class="x" data-act="close">✕</button></div>';
+  if(!list.length) h+='<p class="empty">Nothing was scheduled on this day.</p>';
   list.forEach(function(x){
-    var r=rec(date,x.t.id);
+    var r=rec(date,x.t.id), miss=isMissed(date,x.t.id,x.kind);
     var col={main:'var(--blue-s)',fixed:'var(--amber-s)',extra:'var(--green-s)'}[x.kind];
     h+='<div class="item"><div><div class="n1" style="color:'+col+'">'+esc(x.t.title)+'</div>'+
-      '<div class="n2">'+(r? fmtAmt(r)+' · '+r.start+(r.end?'–'+r.end:'') : '未记录')+'</div></div>'+
-      '<button class="mini" data-task="'+x.t.id+'|'+x.kind+'|'+date+'">'+(r?'修改':'补记')+'</button></div>';
+      '<div class="n2'+(miss?' miss':'')+'">'+(r? fmtAmt(r)+' · '+r.start+(r.end?'–'+r.end:'') : miss?'Missed':'Not logged')+'</div></div>'+
+      '<button class="mini" data-task="'+x.t.id+'|'+x.kind+'|'+date+'">'+(r?'Edit':'Log')+'</button></div>';
   });
-  h+='<div class="item"><div><div class="n1">今日状态</div><div class="n2">'+
-    (st? '总分 '+(st.score>0?'+':'')+st.score+' · '+lv.label : '未记录')+'</div></div>'+
-    '<button class="mini" data-status="'+date+'">'+(st?'查看':'补记')+'</button></div>';
-  h+='<label class="f">今日评分</label>'+ratingCard(date,rt);
+  h+='<div class="item"><div><div class="n1">Condition</div><div class="n2">'+
+    (st? 'score '+(st.score>0?'+':'')+st.score+' · '+lv.label : 'Not logged')+'</div></div>'+
+    '<button class="mini" data-status="'+date+'">'+(st?'View':'Log')+'</button></div>';
+  h+='<label class="f">Daily rating</label>'+ratingCard(date,rt);
   openSheet(h);
 }
 
@@ -702,23 +757,19 @@ document.addEventListener('click',function(e){
   }
   if(a.del){
     var q2=a.del.split('|');
-    if(!confirm('删除这个任务？已经记录过的历史会保留。')) return;
+    if(!confirm('Delete this task? Past records are kept.')) return;
     S[q2[0]]=S[q2[0]].filter(function(x){return x.id!==q2[1];});
-    save(); render(); toast('已删除'); return;
+    save(); render(); toast('Deleted'); return;
   }
   if(a.arch){
     var m=S.mains.filter(function(x){return x.id===a.arch;})[0];
-    if(!m||!confirm('归档「'+m.title+'」？记录会保留在回顾里。')) return;
+    if(!m||!confirm('Archive "'+m.title+'"? Its records stay in Review.')) return;
     S.archive.push(Object.assign({},m,{done:totalFor(m.id)}));
     S.mains=S.mains.filter(function(x){return x.id!==a.arch;});
-    save(); render(); toast('已归档'); return;
+    save(); render(); toast('Archived'); return;
   }
   if(a.day7!==undefined){ el.classList.toggle('on'); return; }
-  if(a.rmdate!==undefined){
-    pullForm();
-    FORM.dates=FORM.dates.filter(function(d){return d!==a.rmdate;});
-    render(); return;
-  }
+  if(a.rmdate!==undefined){ pullForm(); FORM.dates=FORM.dates.filter(function(d){return d!==a.rmdate;}); render(); return; }
   if(a.mood!==undefined){ pullNote(); DRAFT.mood=a.mood; drawStatus(); return; }
   if(a.mental!==undefined){ pullNote(); pick(DRAFT.mental,a.mental,'mental'); drawStatus(); return; }
   if(a.body!==undefined){ pullNote(); pick(DRAFT.body,a.body,'body'); drawStatus(); return; }
@@ -729,38 +780,38 @@ document.addEventListener('click',function(e){
     case 'save-rec': saveRec(); break;
     case 'del-rec':
       delete logOf(SHEET.date).tasks[SHEET.id];
-      save(); closeSheet(); render(); toast('已取消记录'); break;
+      save(); closeSheet(); render(); toast('Record removed'); break;
     case 'save-status': {
       pullNote();
       var sc=scoreOf(DRAFT);
       logOf(SHEET.date).status={mood:DRAFT.mood,mental:DRAFT.mental,body:DRAFT.body,note:DRAFT.note,score:sc,level:levelOf(sc).label};
-      save(); closeSheet(); render(); toast('已提交 · '+levelOf(sc).label); break;
+      save(); closeSheet(); render(); toast('Submitted · '+levelOf(sc).label); break;
     }
     case 'add-date': {
       pullForm();
       var v=document.getElementById('f_newdate').value;
-      if(!v){ toast('先选一个日期'); return; }
-      if(FORM.dates.indexOf(v)<0) FORM.dates.push(v); else toast('这天已经在里面了');
+      if(!v){ toast('Pick a date first'); return; }
+      if(FORM.dates.indexOf(v)<0) FORM.dates.push(v); else toast('That day is already in');
       render(); break;
     }
     case 'save-task': saveTask(); break;
     case 'export': {
       var s=JSON.stringify(S);
-      if(navigator.clipboard) navigator.clipboard.writeText(s).then(function(){toast('已复制，粘到备忘录里');},function(){toast('复制失败');});
-      else toast('这个浏览器不支持复制');
+      if(navigator.clipboard) navigator.clipboard.writeText(s).then(function(){toast('Copied — paste it into Notes');},function(){toast('Copy failed');});
+      else toast('This browser blocks copying');
       break;
     }
     case 'import': {
-      var v2=prompt('把之前复制的数据粘进来');
+      var v2=prompt('Paste the data you copied earlier');
       if(!v2) return;
-      try{ S=migrate(JSON.parse(v2)); save(); render(); toast('已恢复'); }
-      catch(err){ toast('这段数据读不出来'); }
+      try{ S=migrate(JSON.parse(v2)); save(); render(); toast('Restored'); }
+      catch(err){ toast("Couldn't read that data"); }
       break;
     }
   }
 });
 
-/* 「平静」「普通」与同组其他项互斥 */
+/* "Calm" and "Normal" are exclusive with the rest of their group */
 function pick(arr,val,group){
   var i=arr.indexOf(val);
   if(i>=0){ arr.splice(i,1); return; }
@@ -771,25 +822,25 @@ function pick(arr,val,group){
 
 function saveTask(){
   pullForm();
-  var title=(FORM.title||'').trim(), planned=parseFloat(FORM.planned), unit=FORM.unit;
-  if(!title){ toast('先填内容'); return; }
-  if(isNaN(planned)||planned<=0){ toast('计划量要大于 0'); return; }
+  var title=(FORM.title||'').trim(), planned=parseFloat(FORM.planned), unit=normUnit(FORM.unit);
+  if(!title){ toast('Give it a name first'); return; }
+  if(isNaN(planned)||planned<=0){ toast('Planned amount must be above 0'); return; }
 
   if(SUB==='main'){
-    if(!FORM.due){ toast('主任务必须有截止时间'); return; }
+    if(!FORM.due){ toast('A main task needs a deadline'); return; }
     if(EDIT&&EDIT.id) Object.assign(EDIT,{title:title,due:FORM.due,planned:planned,unit:unit});
     else S.mains.push({id:uid(),title:title,due:FORM.due,planned:planned,unit:unit,created:tk()});
   } else if(SUB==='extra'){
-    if(!FORM.dates.length){ toast('至少加一个日期'); return; }
+    if(!FORM.dates.length){ toast('Add at least one date'); return; }
     var dates=FORM.dates.slice().sort();
     if(EDIT&&EDIT.id) Object.assign(EDIT,{title:title,dates:dates,planned:planned,unit:unit});
-    else S.extra.push({id:uid(),title:title,dates:dates,planned:planned,unit:unit});
+    else S.extra.push({id:uid(),title:title,dates:dates,planned:planned,unit:unit,created:tk()});
   } else {
-    if(!FORM.days.length){ toast('至少选一天'); return; }
+    if(!FORM.days.length){ toast('Pick at least one weekday'); return; }
     if(EDIT&&EDIT.id) Object.assign(EDIT,{title:title,days:FORM.days,planned:planned,unit:unit});
-    else S.fixed.push({id:uid(),title:title,days:FORM.days,planned:planned,unit:unit});
+    else S.fixed.push({id:uid(),title:title,days:FORM.days,planned:planned,unit:unit,created:tk()});
   }
-  save(); EDIT=null; SUB=null; FORM=null; TAB='today'; render(); toast('已保存');
+  save(); EDIT=null; SUB=null; FORM=null; TAB='today'; render(); toast('Saved');
 }
 
 /* ---------- PWA ---------- */
@@ -800,8 +851,8 @@ function isStandalone(){
 function installHTML(){
   if(isStandalone()) return '';
   var ios=/iPad|iPhone|iPod/.test(navigator.userAgent);
-  return '<div class="install"><p>'+(ios?'点底部<b>分享</b> → <b>添加到主屏幕</b>再用。':'把它<b>添加到主屏幕</b>再用。')+
-    '<br>Safari 标签页里的记录会在 7 天不打开后被清掉，装到主屏幕的版本不受这条限制。</p></div>';
+  return '<div class="install"><p>'+(ios?'Tap <b>Share</b> → <b>Add to Home Screen</b> before you start using it.':'<b>Add it to your home screen</b> before you start using it.')+
+    '<br>Safari clears tab storage after 7 days without a visit; an installed app keeps its own.</p></div>';
 }
 if('serviceWorker' in navigator && location.protocol!=='file:'){
   window.addEventListener('load',function(){ navigator.serviceWorker.register('./sw.js').catch(function(){}); });

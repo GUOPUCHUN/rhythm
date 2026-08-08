@@ -2,7 +2,7 @@
    目标只有一个：地铁里没信号也能打卡。
    改了 index.html 之后，把 VERSION 加 1，手机才会拿到新版本。 */
 
-var VERSION = 'rhythm-v1.1.0';
+var VERSION = 'rhythm-v1.2.0';
 var SHELL = [
   './',
   './index.html',
