@@ -525,7 +525,7 @@ function viewForm(){
                 : 'Repeats weekly. Today shows only the ones due today.')+'</p>'+
     '<div class="card" style="margin-top:16px">'+
     '<label class="f">Task name</label><input id="f_title" value="'+esc(f.title)+'" placeholder="'+
-    (isMain?'e.g. AIG first interview prep':isExtra?'e.g. Immigration lawyer call':'e.g. Swimming / Drums / Speaking')+'">';
+    (isMain?'':isExtra?'':'')+'">';
 
   if(isMain){
     h+='<label class="f">Deadline</label><input id="f_due" type="date" value="'+f.due+'"><label class="f">Total planned by then</label>';
