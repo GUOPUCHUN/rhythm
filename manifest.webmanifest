@@ -1,0 +1,17 @@
+{
+  "name": "RHYTHM",
+  "short_name": "RHYTHM",
+  "description": "一周作为一段鼓点。允许缩水，不允许归零。",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#191512",
+  "theme_color": "#191512",
+  "lang": "zh",
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
