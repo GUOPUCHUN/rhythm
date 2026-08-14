@@ -142,20 +142,24 @@ textarea{resize:vertical;min-height:64px;line-height:1.6}
 .tt-head .dh .wf.on{color:var(--brass)}
 .tt-body{display:grid;grid-template-columns:26px repeat(7,1fr);position:relative}
 .tt-hours{display:flex;flex-direction:column;border-right:1px solid var(--line)}
-.tt-hours span{height:52px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);text-align:right;padding-right:4px;padding-top:1px;border-bottom:1px solid #2A2420}
-.tt-col{position:relative;border-right:1px solid #2A2420}
+.tt-hours span{height:64px;font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--dim);text-align:right;padding-right:4px;padding-top:1px;border-bottom:1px solid #2A2420}
+.tt-col{position:relative;border-right:1px solid #2A2420;background-image:repeating-linear-gradient(to bottom,transparent 0,transparent 15px,rgba(255,255,255,.028) 15px,rgba(255,255,255,.028) 16px)}
 .tt-col:last-child{border-right:none}
-.tt-col .slot{height:52px;border-bottom:1px solid #2A2420;cursor:pointer}
+.tt-col .slot{height:64px;border-bottom:1px solid #2A2420;cursor:pointer}
+.tt-col .slot.night{background:rgba(0,0,0,.28)}
 .tt-col .slot:active{background:rgba(216,169,59,.09)}
-.blk{position:absolute;left:1px;right:1px;border-radius:5px;padding:1px 3px;overflow:hidden;font-size:9px;line-height:1.15;cursor:pointer;border:none;font-family:inherit;text-align:left;z-index:1}
-.blk b{display:block;font-weight:600;font-size:9px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.blk small{font-family:'IBM Plex Mono',monospace;font-size:8px;opacity:.8}
+.blk{position:absolute;border-radius:5px;padding:2px 4px;overflow:hidden;font-size:9.5px;line-height:1.2;cursor:pointer;border:none;font-family:inherit;text-align:left;z-index:1;box-shadow:0 0 0 1px rgba(20,18,16,.55)}
+.blk b{display:block;font-weight:600;font-size:9.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.blk small{display:block;font-family:'IBM Plex Mono',monospace;font-size:8px;opacity:.78;margin-top:1px}
+.blk.tiny{padding:0 4px;display:flex;align-items:center}
+.now{position:absolute;left:0;right:0;height:1px;background:var(--red);z-index:3;pointer-events:none}
+.now::before{content:'';position:absolute;left:0;top:-2px;width:5px;height:5px;border-radius:50%;background:var(--red)}
 .blk.main{background:var(--blue);color:#EAF0FF}
 .blk.fixed{background:var(--amber);color:#2A1C05}
 .blk.extra{background:var(--green);color:#08210F}
 .blk.free{background:var(--slate);color:#E4DACE;border:1px solid #5C5148}
 .blk.pink{background:var(--pink);color:#FFE2E7;border:1px solid #A87078}
-.blk.work{left:0;right:0;background:#262220;color:#6E6358;border-radius:0;border-top:1px solid #332E2A;border-bottom:1px solid #332E2A;z-index:0;cursor:default;padding-top:2px}
+.blk.work{background:#262220;box-shadow:none;color:#6E6358;border-radius:0;border-top:1px solid #332E2A;border-bottom:1px solid #332E2A;z-index:0;cursor:default;padding-top:2px}
 
 .kv{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-top:1px solid var(--line);font-size:13.5px}
 .kv:first-child{border-top:none}
@@ -205,7 +209,8 @@ var WD2=['Mo','Tu','We','Th','Fr','Sa','Su'];
 var MON=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var KINDN={main:'Main task',fixed:'Fixed task',extra:'Extra task'};
 var UH='hours', UC='times';
-var TT_START=0, TT_END=24, TT_STEP=4, TT_H=52;   /* timetable: 00:00–24:00, one row per 4h */
+var TT_START=0, TT_END=24, TT_STEP=4, TT_H=64;   /* timetable: 00:00–24:00, one row per 4h */
+var TT_MIN=15;                                   /* shortest a block may be drawn, in px */
 var WORK_S=9*60, WORK_E=18*60;                   /* the band a checked workday fills */
 
 var MOOD=[['Sad',-2],['A bit sad',-1],['An ordinary day',0],['A bit happy',1],['Happy',2]];
@@ -572,16 +577,27 @@ function blocksFor(date){
   });
   return out;
 }
-function layout(blks){
-  /* overlapping blocks share the column width */
+function layout(blks,ppm){
+  /* group blocks that overlap in time, then decide how they share the column */
   blks.sort(function(a,b){ return a.s-b.s || a.e-b.e; });
   var groups=[], cur=[];
   blks.forEach(function(b){
-    if(cur.length && b.s < Math.max.apply(null,cur.map(function(x){return x.e;}))) cur.push(b);
+    /* compare against drawn height, not raw duration: a 10-minute block still
+       occupies TT_MIN px and would otherwise be drawn on top of its neighbour */
+    var overlaps = cur.length && cur.some(function(x){
+      return b.s < x.s + Math.max(x.e-x.s, TT_MIN/ppm);
+    });
+    if(overlaps) cur.push(b);
     else { if(cur.length) groups.push(cur); cur=[b]; }
   });
   if(cur.length) groups.push(cur);
-  groups.forEach(function(g){ g.forEach(function(b,i){ b.col=i; b.cols=g.length; }); });
+  groups.forEach(function(g){
+    g.forEach(function(b,i){
+      b.col=i; b.cols=g.length;
+      /* two side by side is still readable on a phone; three or more cascade */
+      b.mode = g.length<=2 ? 'split' : 'stack';
+    });
+  });
   return blks;
 }
 function viewWeek(){
@@ -603,21 +619,35 @@ function viewWeek(){
   for(var hr=TT_START;hr<TT_END;hr+=TT_STEP) h+='<span>'+pad(hr)+'</span>';
   h+='</div>';
 
+  var full=(TT_END-TT_START)*60*ppm;   /* total grid height in px */
   for(var d=0;d<7;d++){
     var ds2=addD(WEEK,d);
     h+='<div class="tt-col">';
-    for(var hr2=TT_START;hr2<TT_END;hr2+=TT_STEP) h+='<div class="slot" data-slot="'+ds2+'|'+hr2+'"></div>';
+    for(var hr2=TT_START;hr2<TT_END;hr2+=TT_STEP)
+      h+='<div class="slot'+(hr2<8?' night':'')+'" data-slot="'+ds2+'|'+hr2+'"></div>';
     /* a checked workday paints a background band; task blocks still sit on top of it */
     if(S.work[ds2])
-      h+='<div class="blk work" style="top:'+((WORK_S-TT_START*60)*ppm)+'px;height:'+((WORK_E-WORK_S)*ppm-1)+'px"><b>Work</b></div>';
-    layout(blocksFor(ds2)).forEach(function(b){
+      h+='<div class="blk work" style="top:'+((WORK_S-TT_START*60)*ppm)+'px;left:0;right:0;height:'+((WORK_E-WORK_S)*ppm-1)+'px"><b>Work</b></div>';
+    layout(blocksFor(ds2),ppm).forEach(function(b){
       var bs=clamp(b.s,TT_START*60,TT_END*60), be=clamp(b.e,TT_START*60,TT_END*60);
-      var top=(bs-TT_START*60)*ppm, hgt=Math.max(10,(be-bs)*ppm-1);
-      var w=100/b.cols, lft=b.col*w;
-      h+='<button class="blk '+b.kind+'" style="top:'+top+'px;height:'+hgt+'px;left:calc('+lft+'% + 1px);width:calc('+w+'% - 2px)" '+
+      var hgt=Math.max(TT_MIN,(be-bs)*ppm-1);
+      /* a late block would otherwise be clipped by the bottom of the grid */
+      var top=Math.min((bs-TT_START*60)*ppm, full-hgt-1);
+      var pos;
+      if(b.mode==='split'){
+        var w=100/b.cols;
+        pos='left:calc('+(b.col*w)+'% + 1px);width:calc('+w+'% - 2px);z-index:'+(1+b.col);
+      } else {
+        pos='left:'+(1+b.col*9)+'px;right:1px;z-index:'+(1+b.col);
+      }
+      h+='<button class="blk '+b.kind+(hgt<24?' tiny':'')+'" style="top:'+top+'px;height:'+hgt+'px;'+pos+'" '+
          'data-blk="'+ds2+'|'+b.id+'|'+(b.task?'t':'f')+'"><b>'+esc(b.title)+'</b>'+
-         (hgt>22?'<small>'+m2hm(b.s)+'</small>':'')+'</button>';
+         (hgt>=34?'<small>'+m2hm(b.s)+'\u2013'+m2hm(b.e)+'</small>':'')+'</button>';
     });
+    if(ds2===tk()){
+      var nowM=hm2m(pad(new Date().getHours())+':'+pad(new Date().getMinutes()));
+      h+='<div class="now" style="top:'+((nowM-TT_START*60)*ppm)+'px"></div>';
+    }
     h+='</div>';
   }
   h+='</div></div>';
@@ -635,9 +665,8 @@ function viewWeek(){
   h+='<div class="legend"><span><i style="background:var(--blue)"></i>main</span>'+
      '<span><i style="background:var(--amber)"></i>fixed</span>'+
      '<span><i style="background:var(--green)"></i>extra</span>'+
-     '<span><i style="background:var(--slate)"></i>block</span>'+
-     '<span><i style="background:var(--pink)"></i>block</span>'+
-     '<span><i style="background:#262220"></i>work</span></div>';
+     '<span><i style="background:var(--slate)"></i><i style="background:var(--pink);margin-left:-2px"></i>own block</span>'+
+     '<span><i style="background:#3A342F"></i>work</span></div>';
   h+='<div class="sec"><div class="sec-h"><span class="sec-t">This week</span></div><div class="card">'+
      kv('Tasks logged', hrs(taskMin))+
      kv('\u00b7 main / fixed / extra', hrs(byKind.main)+' / '+hrs(byKind.fixed)+' / '+hrs(byKind.extra))+
