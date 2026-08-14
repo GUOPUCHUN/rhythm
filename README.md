@@ -3,7 +3,6 @@
 A personal task and condition tracker. Installs to the iPhone home screen, works offline.
 Plain static files — no framework, no build step, no backend.
 
-**[Live demo](https://your-username.github.io/rhythm/)** · replace with your Pages URL
 
 ## Why
 
