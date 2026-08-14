@@ -3,6 +3,7 @@
 A personal task and condition tracker. Installs to the iPhone home screen, works offline.
 Plain static files — no framework, no build step, no backend.
 
+**[Live demo](https://your-username.github.io/rhythm/)** · replace with your Pages URL
 
 ## Why
 
@@ -20,6 +21,13 @@ today's extra tasks, a condition questionnaire, and a self / others daily rating
 marks a missed day, and the bar at the bottom of each cell shows that day's condition level.
 Tap any date to backfill it. Below the calendar: monthly totals and per-task progress.
 
+**Week** — a timetable covering the full 00:00–24:00 day, drawn on a four-hour grid so a
+whole week fits on one phone screen. Completed tasks are placed automatically from the times
+they were logged with. Tapping an empty slot adds an own block in grey or pink: a record of
+where the time actually went, which never counts towards any task total. Tapping a day header
+marks it a workday, which paints a band behind that day's 09:00–18:00 — task blocks still draw
+on top of it. Overlapping entries split the column width. Past weeks are browsable.
+
 **Plan** — create and manage tasks; archive finished main tasks.
 
 ## Task types
@@ -34,11 +42,19 @@ An overdue main task stays on Today until it is archived, and the next one then 
 
 ## Logging
 
-- Unit **hours** → log a duration and a start time; the end time is derived.
-- Unit **times** → log an amount and a time range.
+Every task can be logged as **done** or **not done**.
+
+- Done, unit **hours** → a duration and a start time; the end time is derived.
+- Done, unit **times** → an amount and a time range.
+- Done entries take an optional note for how it actually went.
+- Not done requires a reason. No times are asked for, and the entry never reaches the
+  timetable.
 - One record per task per day; tapping again edits or removes it.
 - The condition entry is editable until midnight, then locked. Past days with no entry can
   still be backfilled.
+
+Each selected mental or physical state can carry its own optional time range, so *Lonely*
+and *Tired* can be pinned to different parts of the day.
 
 ## Missed days
 
@@ -47,6 +63,8 @@ A past day gets a red dot when any of these is true:
 - a fixed task was scheduled that weekday and was never logged
 - an extra task was set for that date and was never logged
 - a main task reached its deadline that day without hitting its planned amount
+- any task was explicitly marked not done — this one counts on the current day too, since
+  it is a deliberate entry rather than a gap
 
 Today is never counted — the day is not over. Days before a task was created are never
 counted either, so adding a task does not retroactively blame you.
